@@ -15,7 +15,8 @@ class Voucher(models.Model):
     """
 
     1. Ideally it be better to have an 'is_active' field thus, deleted instances would be deactivated instead of removed entirely from DB.
-    2. One could also tie a certain voucher for either to a certain product or user, this design would need us to have an M2M relationship to either User or Product table
+    2. One could also tie a certain voucher for either to a certain product or user,
+    this design would need us to have an M2M relationship to either User or Product table
     3. Validity of voucher could also be constraint by time
     4. There should be additional check if percentage discount is > 100%
     """
@@ -56,5 +57,3 @@ class Voucher(models.Model):
     def use_voucher(self):
         self.usage_remainder = self.usage_remainder - 1
         self.save()
-
-
