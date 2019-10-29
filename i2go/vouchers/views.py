@@ -7,17 +7,14 @@ from .models import Voucher
 def use_voucher(request):
 
     if request.method == "POST":
-        success = "yes"
         form = VoucherForm(request.POST)
         if form.is_valid():
             code = form.cleaned_data['code']
             voucher = Voucher.get_voucher(code)
-            if not voucher:
-                success = "false"
-            else:
-                voucher.use_voucher()
+            voucher.use_voucher()
 
-        return render(request, 'voucher.html', {'form': form, 'voucher': voucher, 'success': success})
-
-    form = VoucherForm()
-    return render(request, 'voucher.html', {'form': form})
+            return render(request, 'voucher.html', {'form': form, 'voucher': voucher})
+        return render(request, 'voucher.html', {'form': form})
+    else:
+        form = VoucherForm()
+        return render(request, 'voucher.html', {'form': form})
