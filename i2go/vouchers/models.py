@@ -40,8 +40,8 @@ class Voucher(models.Model):
 
     def __str__(self):
         if self.value_type == VALUE:
-            return f"$ {self.value}"
-        return f" %{self.value}"
+            return f"${self.value}"
+        return f" {int(self.value)}%"
 
 
     @classmethod
